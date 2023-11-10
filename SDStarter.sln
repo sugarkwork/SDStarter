@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.7.34202.233
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SDStarter", "SDStarter\SDStarter.csproj", "{F8222F30-01AB-430F-BBD4-5D6EE75F5998}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F8222F30-01AB-430F-BBD4-5D6EE75F5998}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F8222F30-01AB-430F-BBD4-5D6EE75F5998}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F8222F30-01AB-430F-BBD4-5D6EE75F5998}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F8222F30-01AB-430F-BBD4-5D6EE75F5998}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4432529D-7598-4F7F-9CC5-0702F42ED96D}
+	EndGlobalSection
+EndGlobal

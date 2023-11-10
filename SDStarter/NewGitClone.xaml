@@ -1,0 +1,54 @@
+﻿<Window x:Class="SDStarter.NewGitClone"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SDStarter"
+        mc:Ignorable="d"
+        Title="New" Height="450" Width="800" WindowStartupLocation="CenterOwner">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Orientation="Horizontal" Grid.Row="0" Margin="5,5,5,5" Grid.ColumnSpan="2">
+            <Label Content="プリセット:"/>
+            <ComboBox x:Name="presetComboBox" Width="300" SelectionChanged="presetComboBox_SelectionChanged"/>
+            <Button x:Name="fetchButton" Content="作成" Width="50" Click="FetchButton_Click" Margin="5,5,5,5"/>
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" Grid.Row="1" Margin="5,5,5,5" Grid.ColumnSpan="2">
+            <Label Content="表示名:"/>
+            <TextBox x:Name="titleTextBox" Width="600" Margin="5"/>
+        </StackPanel>
+
+        <ToggleButton x:Name="toggleAdvancedSettings" Content="詳細設定" Grid.Row="2" Margin="5,5,5,5" Click="ToggleButton_Click"/>
+
+        <!-- 詳細設定エリア -->
+        <StackPanel x:Name="advancedSettingsPanel" Grid.Row="3" Grid.ColumnSpan="2" Margin="5" Visibility="Collapsed">
+            <StackPanel.Style>
+                <Style TargetType="StackPanel">
+                    <Setter Property="Visibility" Value="Collapsed"/>
+                </Style>
+            </StackPanel.Style>
+            <!-- URL TextBox -->
+            <StackPanel Orientation="Horizontal" Margin="5,5,5,5">
+                <Label Content="URL:"/>
+                <TextBox x:Name="urlTextBox" Width="600" Margin="5"/>
+            </StackPanel>
+
+            <!-- Log TextBox -->
+            <TextBox x:Name="logTextBox" Margin="5,5,5,5" VerticalScrollBarVisibility="Auto" AcceptsReturn="True" IsReadOnly="True"/>
+        </StackPanel>
+        
+        <ProgressBar x:Name="progressBar" Grid.Row="4" Height="20" Margin="5" Grid.ColumnSpan="2"/>
+    </Grid>
+
+</Window>
