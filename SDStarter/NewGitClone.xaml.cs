@@ -337,7 +337,7 @@ namespace SDStarter
             string webuiconfigPath = System.IO.Path.Combine(webuiPath, "config.json");
             if (!File.Exists(webuiconfigPath))
             {
-                await File.WriteAllTextAsync(webuiconfigPath, "{\r\n    \"sd_model_checkpoint\": \"ggbb30x.safetensors [c936cb33ed]\",\r\n    \"CLIP_stop_at_last_layers\": 2,\r\n    \"sd_vae\": \"vae-ft-mse-840000-ema-pruned.safetensors\",\r\n}");
+                await File.WriteAllTextAsync(webuiconfigPath, "{\r\n    \"sd_model_checkpoint\": \"ggbb30x.safetensors [c936cb33ed]\",\r\n    \"CLIP_stop_at_last_layers\": 2,\r\n    \"sd_vae\": \"vae-ft-mse-840000-ema-pruned.safetensors\"\r\n}");
             }
 
             await File.WriteAllTextAsync(
