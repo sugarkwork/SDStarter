@@ -224,6 +224,23 @@ namespace SDStarter
 
             var gitLogs = await RunExternalProcessAsync(webuiPath, "git", "log", gitPath);
 
+            string[] autoinstalls = new string[]
+            {
+                "https://github.com/DominikDoom/a1111-sd-webui-tagcomplete",
+                "https://github.com/Bing-su/adetailer",
+                "https://github.com/Mikubill/sd-webui-controlnet",
+            };
+
+            string extensionDir = System.IO.Path.Combine(webuiPath, "extensions");
+            if(!Directory.Exists(extensionDir))
+            {
+                Directory.CreateDirectory(extensionDir);
+            }
+            foreach (string autoinstall in autoinstalls)
+            {
+                await RunExternalProcessAsync(extensionDir, "git", $"clone {autoinstall}", gitPath);
+            }
+
             await LogAsync("*** check models ***", 35);
 
             string modelPath = System.IO.Path.GetFullPath("models");
@@ -338,6 +355,12 @@ namespace SDStarter
             if (!File.Exists(webuiconfigPath))
             {
                 await File.WriteAllTextAsync(webuiconfigPath, "{\r\n    \"sd_model_checkpoint\": \"ggbb30x.safetensors [c936cb33ed]\",\r\n    \"CLIP_stop_at_last_layers\": 2,\r\n    \"sd_vae\": \"vae-ft-mse-840000-ema-pruned.safetensors\"\r\n}");
+            }
+
+            string webuiconfig2Path = System.IO.Path.Combine(webuiPath, "ui-config.json");
+            if (!File.Exists(webuiconfig2Path))
+            {
+                await File.WriteAllTextAsync(webuiconfig2Path, "{\r\n    \"txt2img/Negative prompt/value\": \"(worst quality, low quality:1.3),monochrome,\",\r\n    \"img2img/Negative prompt/value\": \"(worst quality, low quality:1.3),monochrome,\"\r\n}");
             }
 
             await File.WriteAllTextAsync(

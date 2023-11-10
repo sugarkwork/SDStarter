@@ -128,7 +128,6 @@ namespace SDStarter
                     Console.WriteLine(psi.FileName + " " + psi.Arguments);
 
                     using Process? process = Process.Start(psi);
-                    process?.Start();
                 }
                 catch (Exception ex)
                 {
