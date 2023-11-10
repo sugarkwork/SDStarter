@@ -97,8 +97,8 @@ namespace SDStarter
         {
             url_presets.Clear();
             url_presets["sd.webui"] = "https://github.com/AUTOMATIC1111/stable-diffusion-webui";
-            url_presets["sd.next"] = "https://github.com/vladmandic/automatic";
-            url_presets["lama-cleaner"] = "https://github.com/Sanster/lama-cleaner";
+            //url_presets["sd.next"] = "https://github.com/vladmandic/automatic";
+            //url_presets["lama-cleaner"] = "https://github.com/Sanster/lama-cleaner";
         }
 
         private void InitializeComboBoxItems()
