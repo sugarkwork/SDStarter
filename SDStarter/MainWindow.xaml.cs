@@ -90,6 +90,77 @@ namespace SDStarter
             LoadItems();
         }
 
+        private void UpdateWebUIBat(string basedir)
+        {
+            var configPath = Path.Combine(basedir, "config.data");
+            var config = new JsonMemory(configPath, false);
+
+            var webuiPath = Path.Combine(basedir, "webui");
+            var webuiUserPath = Path.Combine(webuiPath, "webui-user.bat");
+            var webuiUserBasePath = Path.Combine(webuiPath, "webui-user_base.bat");
+
+            string[] lines = new string[0];
+
+            if (!File.Exists(webuiUserBasePath) && File.Exists(webuiUserPath))
+            {
+                lines = File.ReadAllLines(webuiUserPath);
+            }
+            else
+            {
+                lines = File.ReadAllLines(webuiUserBasePath);
+            }
+
+            List<string> newlines = new List<string>();
+
+
+            var parstr = "";
+            var cudstr = "";
+
+            var param = new Dictionary<string, List<string>>();
+
+            param["COMMANDLINE_ARGS"] = new List<string>();
+            param["CUDA_VISIBLE_DEVICES"] = new List<string>();
+
+            if (config.Get<bool>("param", "api", false) == true)
+            {
+                param["COMMANDLINE_ARGS"].Add("--api");
+                parstr += "--api ";
+            }
+            if (config.Get<bool>("param", "safe_unpickle", true) == false)
+            {
+                param["COMMANDLINE_ARGS"].Add("--disable-safe-unpickle ");
+                parstr += "--disable-safe-unpickle ";
+            }
+
+            var gpuid = config.Get<string>("param", "gpu") ?? "";
+            if (!string.IsNullOrWhiteSpace(gpuid))
+            {
+                param["CUDA_VISIBLE_DEVICES"].Add($"{gpuid}");
+                cudstr += gpuid;
+            }
+
+            foreach (var line in lines) {
+                var tline = line.Trim();
+                if (string.IsNullOrWhiteSpace(tline))
+                {
+                    newlines.Add("");
+                    continue;
+                }
+            }
+
+            // TODO: 
+            newlines.Clear();
+            newlines.Add("@echo off");
+            newlines.Add("");
+            newlines.Add($"set COMMANDLINE_ARGS={parstr}");
+            newlines.Add($"set CUDA_VISIBLE_DEVICES={cudstr}");
+            newlines.Add("");
+            newlines.Add("call webui.bat");
+            newlines.Add("");
+
+            File.WriteAllLines(webuiUserPath, newlines);
+        }
+
         private void StartItem_Click(object sender, RoutedEventArgs e)
         {
             if (listBoxItems.SelectedItem == null)
@@ -102,6 +173,8 @@ namespace SDStarter
                 var runBatch = "run.bat";
                 var basePath = Path.GetFullPath(Path.Combine(environsDirName, item.Summary));
                 var runPath = Path.Combine(basePath, runBatch);
+
+                UpdateWebUIBat(basePath);
 
                 if (!Directory.Exists(basePath))
                 {
@@ -133,6 +206,36 @@ namespace SDStarter
                 {
                     Console.WriteLine(ex);
                 }
+            }
+        }
+
+        private void OpenImageButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (listBoxItems.SelectedItem == null)
+            {
+                return;
+            }
+            var item = listBoxItems.SelectedItem as Item;
+            if (item != null)
+            {
+                var outputsPath = Path.GetFullPath(Path.Combine(environsDirName, item.Summary, "webui", "outputs"));
+                Process.Start("explorer.exe", outputsPath);
+            }
+        }
+
+        private void EditItem_Click(object sender, RoutedEventArgs e)
+        {
+            if (listBoxItems.SelectedItem == null)
+            {
+                return;
+            }
+            var item = listBoxItems.SelectedItem as Item;
+            if (item != null)
+            {
+
+                OptionWindow optionWindow = new OptionWindow(environsDirName, item.Summary);
+                optionWindow.ShowDialog();
+                LoadItems();
             }
         }
     }

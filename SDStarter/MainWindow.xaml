@@ -17,35 +17,38 @@
         <!-- メニューバーの定義 -->
         <Menu x:Name="MainMenu" Grid.Row="0">
             <MenuItem x:Name="NewItemCreateItem" Header="作成" Click="NewItemCreateItem_Click" />
-            <MenuItem x:Name="StartItem" Header="起動" Click="StartItem_Click" />
         </Menu>
 
-        <Grid Grid.Row="1">
+        <Grid Grid.Row="1" RenderTransformOrigin="0.524,0.5">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="259*"/>
+                <ColumnDefinition Width="282*"/>
             </Grid.ColumnDefinitions>
 
             <ListBox x:Name="listBoxItems" Grid.Column="0" SelectionChanged="ListBoxItems_SelectionChanged">
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel Orientation="Horizontal">
-                        <Image Source="{Binding Icon}" Width="20" Height="20"/>
-                        <TextBlock Text="{Binding Name}" Margin="5,0,0,0"/>
-                        <TextBlock Text="{Binding Summary}" Margin="5,0,0,0"/>
-                        <TextBlock Text="{Binding Status}" Margin="5,0,0,0"/>
-                    </StackPanel>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="{Binding Icon}" Width="20" Height="20"/>
+                            <TextBlock Text="{Binding Name}" Margin="5,0,0,0"/>
+                            <!--TextBlock Text="{Binding Summary}" Margin="5,0,0,0"/>
+                            <TextBlock Text="{Binding Status}" Margin="5,0,0,0"/-->
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
 
-        <Border Grid.Column="1" BorderBrush="Gray" BorderThickness="1" Padding="10">
-            <StackPanel>
-                <TextBlock Text="詳細情報" FontWeight="Bold"/>
-                <!-- Display the details of the selected item here -->
-                <TextBlock Text="{Binding ElementName=listBoxItems, Path=SelectedItem.Name}"/>
-                <TextBlock Text="{Binding ElementName=listBoxItems, Path=SelectedItem.Description}"/>
-                <!-- Add more details as needed -->
+            <Border Grid.Column="1" BorderBrush="Gray" BorderThickness="1" Padding="10" Margin="10,0,0,0">
+                <StackPanel>
+                    <TextBlock Text="詳細情報" FontWeight="Bold"/>
+                    <!-- Display the details of the selected item here -->
+                    <TextBlock Text="{Binding ElementName=listBoxItems, Path=SelectedItem.Name}"/>
+                    <TextBlock Text="{Binding ElementName=listBoxItems, Path=SelectedItem.Description}"/>
+                    <Button x:Name="StartButton" Content="起動" Click="StartItem_Click"/><Separator />
+                    <Button x:Name="EditButton" Content="設定変更" Click="EditItem_Click"/>
+                    <Separator />
+                    <Button x:Name="OpenImageButton" Content="生成フォルダを開く" Click="OpenImageButton_Click"/>
+                    <!-- Add more details as needed -->
                 </StackPanel>
             </Border>
         </Grid>

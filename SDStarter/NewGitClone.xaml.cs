@@ -229,6 +229,7 @@ namespace SDStarter
                 "https://github.com/DominikDoom/a1111-sd-webui-tagcomplete",
                 "https://github.com/Bing-su/adetailer",
                 "https://github.com/Mikubill/sd-webui-controlnet",
+                "https://github.com/Physton/sd-webui-prompt-all-in-one",
             };
 
             string extensionDir = System.IO.Path.Combine(webuiPath, "extensions");
@@ -278,13 +279,16 @@ namespace SDStarter
             await LogAsync($"model count: {models.Length}");
             if (models.Length <= 0)
             {
-                await LogAsync($"download test model: ggbb30x.safetensors");
+                await LogAsync($"download test model: illust base model");
                 await DownloadFileAsync(
                     "https://huggingface.co/sugarknight/test_illust/resolve/main/ggbb30x.safetensors?download=true",
-                    System.IO.Path.Combine(sdmodelPath, "ggbb30x.safetensors"));
+                    System.IO.Path.Combine(sdmodelPath, "gb_illust.safetensors"));
+                await LogAsync($"download test model: bbgg30x.safetensors");
+                await DownloadFileAsync(
+                    "https://huggingface.co/sugarknight/test_real/resolve/main/bbgg30x.safetensors?download=true",
+                    System.IO.Path.Combine(sdmodelPath, "gb_real.safetensors"));
             }
-
-            
+        
             string vaePath = System.IO.Path.Combine(modelPath, "VAE");
             if(!Directory.Exists(vaePath))
             {
@@ -350,11 +354,16 @@ namespace SDStarter
             {
                 await File.WriteAllTextAsync(webuiUserPath, "@echo off\r\n\r\nset PYTHON=\r\nset GIT=\r\nset VENV_DIR=\r\nset COMMANDLINE_ARGS=\r\n\r\ncall webui.bat\r\n");
             }
+            string webuiUserBasePath = System.IO.Path.Combine(webuiPath, "webui-user_base.bat");
+            if (!File.Exists(webuiUserBasePath))
+            {
+                await File.WriteAllTextAsync(webuiUserBasePath, "@echo off\r\n\r\nset PYTHON=\r\nset GIT=\r\nset VENV_DIR=\r\nset COMMANDLINE_ARGS=\r\n\r\ncall webui.bat\r\n");
+            }
 
             string webuiconfigPath = System.IO.Path.Combine(webuiPath, "config.json");
             if (!File.Exists(webuiconfigPath))
             {
-                await File.WriteAllTextAsync(webuiconfigPath, "{\r\n    \"sd_model_checkpoint\": \"ggbb30x.safetensors [c936cb33ed]\",\r\n    \"CLIP_stop_at_last_layers\": 2,\r\n    \"sd_vae\": \"vae-ft-mse-840000-ema-pruned.safetensors\"\r\n}");
+                await File.WriteAllTextAsync(webuiconfigPath, "{\r\n    \"sd_model_checkpoint\": \"gb_illust.safetensors [c936cb33ed]\",\r\n    \"CLIP_stop_at_last_layers\": 2,\r\n    \"sd_vae\": \"vae-ft-mse-840000-ema-pruned.safetensors\"\r\n}");
             }
 
             string webuiconfig2Path = System.IO.Path.Combine(webuiPath, "ui-config.json");

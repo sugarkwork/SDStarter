@@ -57,6 +57,18 @@ namespace SDStarter
             return default;
         }
 
+        public T? Get<T>(string section, string key, T default_value)
+        {
+            CheckMemory(section);
+#pragma warning disable CS8602 // null 参照の可能性があるものの逆参照です。
+            if (Memory[section].ContainsKey(key))
+            {
+                return System.Text.Json.JsonSerializer.Deserialize<T>(Memory[section][key]);
+            }
+#pragma warning restore CS8602 // null 参照の可能性があるものの逆参照です。
+            return default_value;
+        }
+
         public void Set<T>(string section, string key, T val)
         {
             CheckMemory(section);
