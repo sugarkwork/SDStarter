@@ -219,6 +219,10 @@ namespace SDStarter
             if (item != null)
             {
                 var outputsPath = Path.GetFullPath(Path.Combine(environsDirName, item.Summary, "webui", "outputs"));
+                if (!Directory.Exists(outputsPath))
+                {
+                    Directory.CreateDirectory(outputsPath);
+                }
                 Process.Start("explorer.exe", outputsPath);
             }
         }
@@ -237,6 +241,13 @@ namespace SDStarter
                 optionWindow.ShowDialog();
                 LoadItems();
             }
+        }
+
+        private void GlobalSettingItem_Click(object sender, RoutedEventArgs e)
+        {
+            EnvSettings envSettings = new EnvSettings();
+            envSettings.ShowDialog();
+            LoadItems();
         }
     }
 

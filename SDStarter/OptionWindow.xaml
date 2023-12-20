@@ -11,19 +11,21 @@
         <Label x:Name="NameLabel" Content="Name" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
         <Label x:Name="ParamLabel" Content="Param" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="text_param" HorizontalAlignment="Left" Margin="92,45,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="544" IsEnabled="False"/>
-        <TextBox x:Name="text_userparam" HorizontalAlignment="Left" Margin="92,76,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="544" TextChanged="text_userparam_TextChanged" TargetUpdated="text_userparam_TargetUpdated"/>
-        <Label x:Name="UserParamLabel" Content="User Param" HorizontalAlignment="Left" Margin="10,72,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="text_userparam" HorizontalAlignment="Left" Margin="92,76,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="544" TextChanged="text_userparam_TextChanged" TargetUpdated="text_userparam_TargetUpdated" Background="White" IsEnabled="False"/>
+        <Label x:Name="UserParamLabel" Content="User Options" HorizontalAlignment="Left" Margin="10,72,0,0" VerticalAlignment="Top"/>
         <Button x:Name="button_cancel" Content="Cancel" HorizontalAlignment="Right" Margin="0,0,10,10" VerticalAlignment="Bottom" Width="97" Click="button_cancel_Click" Height="20"/>
-        <GroupBox x:Name="groupBox" Header="Options" Margin="10,103,10,35">
+        <GroupBox x:Name="groupBox" Header="Options" Margin="10,138,10,35">
         </GroupBox>
 
-        <Label x:Name="GPULabel" Content="GPU" HorizontalAlignment="Left" Margin="29,138,0,0" VerticalAlignment="Top"/>
-        <ComboBox x:Name="combo_gpu" HorizontalAlignment="Left" Margin="114,140,0,0" VerticalAlignment="Top" Width="169" SelectionChanged="combo_gpu_SelectionChanged" DropDownClosed="combo_gpu_DropDownClosed"/>
+        <Label x:Name="GPULabel" Content="GPU" HorizontalAlignment="Left" Margin="30,161,0,0" VerticalAlignment="Top"/>
+        <ComboBox x:Name="combo_gpu" HorizontalAlignment="Left" Margin="115,163,0,0" VerticalAlignment="Top" Width="169" SelectionChanged="combo_gpu_SelectionChanged" DropDownClosed="combo_gpu_DropDownClosed"/>
         <Button x:Name="button_ok" Content="OK" HorizontalAlignment="Right" Margin="0,0,112,10" VerticalAlignment="Bottom" Width="97" Click="button_ok_Click"/>
-        <Label x:Name="label" Content="API" HorizontalAlignment="Left" Margin="29,170,0,0" VerticalAlignment="Top"/>
-        <CheckBox x:Name="check_api" Content="Enable" HorizontalAlignment="Left" Margin="114,176,0,0" VerticalAlignment="Top" Checked="check_api_Checked" Unchecked="check_api_Checked"/>
-        <Label x:Name="label2" Content="safe-unpickle" HorizontalAlignment="Left" Margin="29,201,0,0" VerticalAlignment="Top"/>
-        <CheckBox x:Name="check_safe_unpickle" Content="Enable" HorizontalAlignment="Left" Margin="114,207,0,0" VerticalAlignment="Top" Checked="check_safe_unpickle_Checked" Unchecked="check_safe_unpickle_Checked"/>
+        <Label x:Name="label" Content="API" HorizontalAlignment="Left" Margin="30,193,0,0" VerticalAlignment="Top"/>
+        <CheckBox x:Name="check_api" Content="Enable" HorizontalAlignment="Left" Margin="115,199,0,0" VerticalAlignment="Top" Checked="check_api_Checked" Unchecked="check_api_Checked"/>
+        <Label x:Name="label2" Content="safe-unpickle" HorizontalAlignment="Left" Margin="30,224,0,0" VerticalAlignment="Top"/>
+        <CheckBox x:Name="check_safe_unpickle" Content="Enable" HorizontalAlignment="Left" Margin="115,230,0,0" VerticalAlignment="Top" Checked="check_safe_unpickle_Checked" Unchecked="check_safe_unpickle_Checked"/>
+        <TextBox x:Name="text_userenv" HorizontalAlignment="Left" Margin="92,107,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="544" TextChanged="text_userparam_TextChanged" TargetUpdated="text_userparam_TargetUpdated" IsEnabled="False"/>
+        <Label x:Name="UserEnvLabel" Content="User Env" HorizontalAlignment="Left" Margin="10,103,0,0" VerticalAlignment="Top"/>
 
     </Grid>
 </Window>

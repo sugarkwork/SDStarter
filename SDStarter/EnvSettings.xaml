@@ -1,0 +1,17 @@
+﻿<Window x:Class="SDStarter.EnvSettings"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SDStarter"
+        mc:Ignorable="d"
+        Title="EnvSettings" Height="162" Width="384" Loaded="Window_Loaded">
+    <Grid>
+        <Button x:Name="button_ok" Content="OK" HorizontalAlignment="Right" Margin="0,0,106,10" VerticalAlignment="Bottom" Width="86" Click="button_Click"/>
+        <TextBox x:Name="text_modelpath" HorizontalAlignment="Left" Margin="104,14,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="227"/>
+        <Button x:Name="button_cancel" Content="Cancel" HorizontalAlignment="Right" Margin="0,0,10,10" VerticalAlignment="Bottom" Width="86"/>
+        <Label x:Name="label" Content="Model Path" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="button2" Content="..." HorizontalAlignment="Left" Margin="336,13,0,0" VerticalAlignment="Top" Click="button2_Click"/>
+
+    </Grid>
+</Window>

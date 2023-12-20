@@ -8,7 +8,8 @@
         Title="New" Height="450" Width="800" WindowStartupLocation="CenterOwner">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="631*"/>
+            <ColumnDefinition Width="169*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -29,26 +30,19 @@
             <TextBox x:Name="titleTextBox" Width="600" Margin="5"/>
         </StackPanel>
 
-        <ToggleButton x:Name="toggleAdvancedSettings" Content="詳細設定" Grid.Row="2" Margin="5,5,5,5" Click="ToggleButton_Click"/>
-
         <!-- 詳細設定エリア -->
-        <StackPanel x:Name="advancedSettingsPanel" Grid.Row="3" Grid.ColumnSpan="2" Margin="5" Visibility="Collapsed">
-            <StackPanel.Style>
-                <Style TargetType="StackPanel">
-                    <Setter Property="Visibility" Value="Collapsed"/>
-                </Style>
-            </StackPanel.Style>
-            <!-- URL TextBox -->
+        <StackPanel x:Name="advancedSettingsPanel" Grid.Row="3" Grid.ColumnSpan="2" Margin="5,5,5,5">
+
             <StackPanel Orientation="Horizontal" Margin="5,5,5,5">
                 <Label Content="URL:"/>
                 <TextBox x:Name="urlTextBox" Width="600" Margin="5"/>
             </StackPanel>
 
             <!-- Log TextBox -->
-            <TextBox x:Name="logTextBox" Margin="5,5,5,5" VerticalScrollBarVisibility="Auto" AcceptsReturn="True" IsReadOnly="True"/>
+            <TextBox x:Name="logTextBox" Margin="5,5,5,5" VerticalScrollBarVisibility="Auto" IsReadOnly="True" Height="266"/>
         </StackPanel>
-        
-        <ProgressBar x:Name="progressBar" Grid.Row="4" Height="20" Margin="5" Grid.ColumnSpan="2"/>
+
+        <ProgressBar x:Name="progressBar" Grid.Row="4" Height="20" Margin="5,5,5,5" Grid.ColumnSpan="2"/>
     </Grid>
 
 </Window>

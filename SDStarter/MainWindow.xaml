@@ -5,8 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SDStarter"
         mc:Ignorable="d"
-        Title="MainWindow" Height="353" Width="541">
-
+        Title="SDStarter" Height="353" Width="541">
 
     <Grid>
         <Grid.RowDefinitions>
@@ -16,7 +15,8 @@
 
         <!-- メニューバーの定義 -->
         <Menu x:Name="MainMenu" Grid.Row="0">
-            <MenuItem x:Name="NewItemCreateItem" Header="作成" Click="NewItemCreateItem_Click" />
+            <MenuItem x:Name="NewItemCreateItem" Header="新規作成" Click="NewItemCreateItem_Click" />
+            <MenuItem x:Name="GlobalSettingItem" Header="環境設定" Click="GlobalSettingItem_Click" />
         </Menu>
 
         <Grid Grid.Row="1" RenderTransformOrigin="0.524,0.5">
@@ -40,13 +40,14 @@
 
             <Border Grid.Column="1" BorderBrush="Gray" BorderThickness="1" Padding="10" Margin="10,0,0,0">
                 <StackPanel>
-                    <TextBlock Text="詳細情報" FontWeight="Bold"/>
+                    <TextBlock Text="情報" FontWeight="Bold"/>
                     <!-- Display the details of the selected item here -->
                     <TextBlock Text="{Binding ElementName=listBoxItems, Path=SelectedItem.Name}"/>
                     <TextBlock Text="{Binding ElementName=listBoxItems, Path=SelectedItem.Description}"/>
-                    <Button x:Name="StartButton" Content="起動" Click="StartItem_Click"/><Separator />
+                    <Button x:Name="StartButton" Content="起動" Click="StartItem_Click"/>
+                    <Separator Height="10" />
                     <Button x:Name="EditButton" Content="設定変更" Click="EditItem_Click"/>
-                    <Separator />
+                    <Separator Height="10" />
                     <Button x:Name="OpenImageButton" Content="生成フォルダを開く" Click="OpenImageButton_Click"/>
                     <!-- Add more details as needed -->
                 </StackPanel>

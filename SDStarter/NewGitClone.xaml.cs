@@ -19,6 +19,7 @@ using System.IO.Compression;
 using System.Security.Policy;
 using System.Diagnostics;
 using System.Text.RegularExpressions;
+using Path = System.IO.Path;
 
 namespace SDStarter
 {
@@ -141,12 +142,6 @@ namespace SDStarter
                 Log(ex.ToString());
             }
         }
-        private void ToggleButton_Click(object sender, RoutedEventArgs e)
-        {
-            advancedSettingsPanel.Visibility = toggleAdvancedSettings.IsChecked ?? false
-                ? Visibility.Visible
-                : Visibility.Collapsed;
-        }
 
         private async Task Fetching(string dirName)
         {
@@ -169,7 +164,7 @@ namespace SDStarter
             var destPath = string.Empty;
 
             for (int i = 0; i < 100; i++) {
-                destName = $"{dirName}_{i}"; // DateTime.Now.ToString("yyyyMMdd_HHmmss")
+                destName = $"{i}"; // DateTime.Now.ToString("yyyyMMdd_HHmmss") // {dirName}_
                 destPath = System.IO.Path.GetFullPath(System.IO.Path.Combine("environs", destName));
                 if(!Directory.Exists(destPath))
                 {
@@ -183,8 +178,10 @@ namespace SDStarter
                 Directory.CreateDirectory(destPath);
             }
 
-            var configPath = System.IO.Path.Combine(destPath, "config.data");
+            var appconfPath = Path.GetFullPath(Path.Combine(".", "config.json"));
+            var configPath = Path.Combine(destPath, "config.data");
 
+            JsonMemory appconf = new JsonMemory(appconfPath, true);
             JsonMemory config = new JsonMemory(configPath, true);
 
             var title = titleTextBox.Text.Trim();
@@ -230,6 +227,7 @@ namespace SDStarter
                 "https://github.com/Bing-su/adetailer",
                 "https://github.com/Mikubill/sd-webui-controlnet",
                 "https://github.com/Physton/sd-webui-prompt-all-in-one",
+                "https://github.com/zanllp/sd-webui-infinite-image-browsing.git"
             };
 
             string extensionDir = System.IO.Path.Combine(webuiPath, "extensions");
@@ -244,7 +242,7 @@ namespace SDStarter
 
             await LogAsync("*** check models ***", 35);
 
-            string modelPath = System.IO.Path.GetFullPath("models");
+            string modelPath = System.IO.Path.GetFullPath(appconf.Get<string>("env", "model_path") ?? "models");
             string sdmodelPath = System.IO.Path.Combine(modelPath, "Stable-diffusion");
             string checkpointPath = System.IO.Path.Combine(modelPath, "checkpoints");
             string system32 = System.IO.Path.GetFullPath(Environment.ExpandEnvironmentVariables(@"%windir%\System32"));
@@ -588,6 +586,11 @@ namespace SDStarter
             titleTextBox.Text = url_presets.ContainsKey(keyName) ? keyName : string.Empty;
             urlTextBox.Text = url_presets.ContainsKey(keyName) ? url_presets[keyName] : string.Empty;
             Console.WriteLine(urlTextBox.Text);
+        }
+
+        private void toggleAdvancedSettings_Checked(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 
